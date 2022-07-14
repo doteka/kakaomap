@@ -13,6 +13,9 @@
       src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2e91fcc8ad16e28de8d60b83cd910688"
     ></script>
     <script>
+
+    
+
       var container = document.getElementById("map");
       var options = {
         center: new kakao.maps.LatLng(37.306298397269714, 127.92449376175145),
@@ -27,6 +30,7 @@
           pos.coords.latitude,
           pos.coords.longitude
         );
+        console.log(pos)
 
         var message = "클릭한 위치의 위도는 " + currentPos;
 
@@ -50,6 +54,12 @@
         alert("위치 정보를 가져오는데 실패했습니다.");
       }
 
+      setInterval(function(){
+        navigator.geolocation.getCurrentPosition(
+          locationLoadSuccess,
+          locationLoadError
+        );
+    }, 10000)
       // 위치 가져오기 버튼 클릭시
       function getCurrentPosBtn() {
         navigator.geolocation.getCurrentPosition(
